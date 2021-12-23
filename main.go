@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/userforbidden/s_senthivel.challenge/RSASignature"
+)
 
 func main() {
-	fmt.Println("crypto sign code challenge")
+	RSASignature.SignInput("Saranyan")
 }

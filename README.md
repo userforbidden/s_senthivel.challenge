@@ -1,25 +1,10 @@
 # s_senthivel.challenge
-Intel Coding Cryto Sign Challenge
-
-Crypto Sign
-===========
-
-Crypto Sign is your personal submission to the code challenge prompt found at the
-bottom of this document.
-
-Installing
-----------
-
-This is intended to be used on Unix based file systems.
-
-To install this tool you need to have [Go 1.14][go] installed.
-
-[go]: https://golang.org/
+Intel Coding Crypto Sign Challenge
 
 Usage
 -----
 
-    crypto-sign-challenge MESSAGE
+    s_senthivel.challenge MESSAGE
 
 `MESSAGE` is the message you wish to sign with your private key.  The message
 must be 250 characters or less.
@@ -27,7 +12,7 @@ must be 250 characters or less.
 The following is an example with output included.
 
 ```
-$ crypto-sign-challenge 'Welcome to the Jungle'
+$ s_senthivel.challenge 'Welcome to the Jungle'
 {
     "message": "Welcome to the Jungle",
     "signature": "MIGIAkIBHEc8FETUYOPze9YxePzBfN2OjbstTYQxfViHu6vziSfDbM5iJ8jCmH3LkScgoTNCRBAMBY407jDC/fYq88iN22cCQgCmytbObfzxtHWHpcYFvOb3PHHDKlv+rtAZJ/+AdxBvihjY/xRDi1PH8GhyEgzW7xzJ1KF7BhqmeMwH9pXUCx6JiA==",
@@ -35,28 +20,9 @@ $ crypto-sign-challenge 'Welcome to the Jungle'
 }
 ```
 
-Storage
--------
-
-This project will generate a new private key if it does not exist and will store
-it in:
-
-    $HOME/.local/share/signer
-
-Code Challenge Prompt
+Code Challenge Requirements
 ---------------------
-
-We want to see how you think, how you write code, and the effort you put into
-your work.
-
-The following is derived from one of our products, so we're not wasting your
-time solving a theoretical computer science problem, you're actually doing
-something directly relevant to what you'll be doing if you join our team.
-
-Using a language of your choice, provide an application that meets the following
-requirements:
-
-  - Given a string input of up to 250 characters, return a JSON response
+  - [X] Given a string input of up to 250 characters, return a JSON response
     compliant to the schema defined below.
     - You are responsible for generating a public/private RSA or ECDSA keypair
       and persisting the keypair on the filesystem
@@ -66,35 +32,12 @@ requirements:
     for any public methods
   - Include Unit Test(s) with instructions on how a Continuous Integration
     system can execute your test(s)
-  - You may only use first order libraries, you may not use any third party
-    libraries or packages.  For example, you may use the OpenSSL library, but
-    you may not use any libraries built on top of OpenSSL.
+  - You may only use first order libraries, you may not use any third party libraries or packages.  For example, you may use the OpenSSL library, but you may not use any libraries built on top of OpenSSL.
+  - This project will generate a new private key if it does not exist and will store
+it in:
+    $HOME/.local/share/signer
 
-JSON Schema for your application response:
 
-```json
-{
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Signed Identifier",
-    "description": "Schema for a signed identifier",
-    "type": "object",
-    "required": [ "message", "signature", "pubkey" ],
-    "properties": {
-        "message": {
-            "type": "string",
-            "description": "original string provided as the input to your app"
-        },
-        "signature": {
-            "type": "string",
-            "description": "RFC 4648 compliant Base64 encoded cryptographic signature of the input, calculated using the private key and the SHA256 digest of the input"
-        },
-        "pubkey": {
-            "type": "string",
-            "description": "Base64 encoded string (PEM format) of the public key generated from the private key used to create the digital signature"
-        }
-    }
-}
-```
 
 
 EXAMPLE

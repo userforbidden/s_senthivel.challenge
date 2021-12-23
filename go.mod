@@ -1,3 +1,3 @@
-module github.com/intel/crypto-sign-challenge
+module github.com/userforbidden/s_senthivel.challenge
 
-go 1.14
+go 1.17
