@@ -52,7 +52,7 @@ func SignInput(input string) SignedMessageStructure{
 
 	if err != nil{
 		fmt.Println("Creating New Key")
-		privateKey, err = CreateNewKey(keyFile); 
+		privateKey, _ = CreateNewKey(keyFile); 
 	}
 
 	hash := crypto.SHA256.New()
@@ -89,7 +89,7 @@ func GetKeyPath() string{
 		log.Fatalf("Cannot determine the current Users home directory")
 	}
 
-	homeDir,err := filepath.Abs(home)
+	homeDir,_ := filepath.Abs(home)
 	keyFilePath := filepath.Join(homeDir,".local","share","signer",keyFilename)
 
 	return keyFilePath
