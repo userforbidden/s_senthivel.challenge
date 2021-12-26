@@ -37,6 +37,12 @@ which contains the message signature and Pubkey as per the Schema requirement
 	 Pubkey string `json:"pubkey"`
  }
 
+ /*
+ 	Given a input string it will be signed with RSA private if the key file is available
+	if the Key file is not available, A new private key will be generated and stored into the 
+	users home directory $HOME/.local/share/signer/privatekey.pem
+ */
+
 func SignInput(input string) SignedMessageStructure{
 	
 	keyFile := GetKeyPath()
@@ -112,6 +118,10 @@ func GetKeyData(filepath string) (*rsa.PrivateKey,error){
 
 	return privKey, nil
 }
+
+/*
+	This function will create new key into the given filename
+*/
 
 func CreateNewKey(filename string)(*rsa.PrivateKey,error){
 	err := os.MkdirAll(filepath.Dir(filename), os.ModePerm)
