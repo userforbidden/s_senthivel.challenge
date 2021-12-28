@@ -55,3 +55,15 @@ Returns:
     "pubkey":"-----BEGIN PUBLIC KEY-----\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEI5/0zKsIzou9hL3ZdjkvBeVZFKpDwxTb\nfiDVjHpJdu3+qOuaKYgsLLiO9TFfupMYHLa20IqgbJSIv/wjxANH68aewV1q2Wn6\nvLA3yg2mOTa/OHAZEiEf7bVEbnAov+6D\n-----END PUBLIC KEY-----\n"
 }
 ```
+
+
+To run tests
+```
+go test -v ./...
+```
+
+To run the program, run the following commands:
+```
+docker build -t <image name> .
+docker run <image name> <input message>
+```
