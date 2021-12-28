@@ -3,6 +3,7 @@ package RSASignature
 import (
 	"crypto/x509"
 	"encoding/pem"
+	"fmt"
 	"testing"
 )
 
@@ -38,6 +39,7 @@ func TestOverall(t *testing.T) {
 	block, _ := pem.Decode([]byte(keyFromSystem))
 	privKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil{
+		fmt.Println("Failed here ")
 		t.Fail()
 	}
 	
@@ -57,6 +59,7 @@ func TestOverall(t *testing.T) {
 		`,
 	}
 	if expected != actual {
+		fmt.Println("Failed in comparison")
 		t.Fail()
 	}
 }
