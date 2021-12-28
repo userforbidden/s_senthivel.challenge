@@ -38,23 +38,12 @@ which contains the message signature and Pubkey as per the Schema requirement
  }
 
  /*
- 	Given a input string it will be signed with RSA private if the key file is available
-	if the Key file is not available, A new private key will be generated and stored into the 
-	users home directory $HOME/.local/share/signer/privatekey.pem
+ 	Given a input string and rsa.ProvateKey the input will be signed with RSA private and the 
+	 SignedMessageStructure will be returned
  */
 
-func SignInput(input string) SignedMessageStructure{
+func SignInput(input string,privateKey *rsa.PrivateKey) SignedMessageStructure{
 	
-	keyFile := GetKeyPath()
-	fmt.Println(keyFile)
-
-	privateKey , err := GetKeyData(keyFile)
-
-	if err != nil{
-		fmt.Println("Creating New Key")
-		privateKey, _ = CreateNewKey(keyFile); 
-	}
-
 	hash := crypto.SHA256.New()
 	hash.Write([]byte(input))
 	signature, err := rsa.SignPKCS1v15(rand.Reader, privateKey,crypto.SHA256,hash.Sum(nil))
@@ -99,13 +88,19 @@ func GetKeyPath() string{
 /* 
 	This function will get the contents of the privatekeyfile if exists
 */
-func GetKeyData(filepath string) (*rsa.PrivateKey,error){
+func GetKeyData(filepath string) ([]byte,error){
 	
 	keyData, err := ioutil.ReadFile(filepath)
 	if err != nil{
 		return nil, err
 	}
-	fmt.Println("Using existing Key file")
+	return keyData, nil
+	
+}
+
+func DecodeKeyData(keyData []byte) (*rsa.PrivateKey,error){
+	
+	// fmt.Println("Using existing Key file")
 	block, _ := pem.Decode([]byte(keyData))
 	if block == nil{
 		return nil, fmt.Errorf("RSA private key format is incorrect")
@@ -116,7 +111,7 @@ func GetKeyData(filepath string) (*rsa.PrivateKey,error){
 		log.Fatalf("Key is not parsed: %v", err)
 	}
 
-	return privKey, nil
+	return privKey,nil
 }
 
 /*
