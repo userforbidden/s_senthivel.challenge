@@ -17,31 +17,31 @@ func main() {
 
 	input := os.Args[1]
 
-	if len(input) > 250{
+	if len(input) > 250 {
 		fmt.Println("Input length cannot be longer than 250 characters")
 		os.Exit(0)
 	}
-	
+
 	keyFile := RSASignature.GetKeyPath()
 	fmt.Println(keyFile)
 
-	privateKeybyte , err := RSASignature.GetKeyData(keyFile)
+	privateKeybyte, err := RSASignature.GetKeyData(keyFile)
 
 	var privateKey *rsa.PrivateKey
 
-	if err != nil{
+	if err != nil {
 		fmt.Println("Creating New Key")
-		privateKey, _ = RSASignature.CreateNewKey(keyFile); 
+		privateKey, _ = RSASignature.CreateNewKey(keyFile)
 	} else {
 		fmt.Println("Using Existing Key")
 		privateKey, _ = RSASignature.DecodeKeyData(privateKeybyte)
 	}
 
-	
-
-	signedMessage := RSASignature.SignInput(input,privateKey)
+	signedMessage := RSASignature.SignInput(input, privateKey)
 
 	signedJsonMessage, _ := json.Marshal(signedMessage)
 
 	fmt.Println(string(signedJsonMessage))
+
+	
 }
