@@ -34,10 +34,10 @@ func TestOverall(t *testing.T) {
 	v2pwY4MAyQKBgQuua5LksbTQ7iLiHOyTIx7S+hiqHAO2IEFe8y9sXt/zYtcw/ErA
 	qG14kmnd5KBTNGRbK8rt9hNpJfI1RWw+9wdXx4r9DhwpXJyZ/oCaibJmTBaYB25E
 	0etPoLUlGZ4jACbvJdJaMC6v7BixTmZGPS1SbHB5e/R+Ae8hPPDtqHRyuA==
-	-----END RSA PRIVATE KEY-----
-	`
+	-----END RSA PRIVATE KEY-----`
 	block, _ := pem.Decode([]byte(keyFromSystem))
 	privKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
+	
 	if err != nil{
 		fmt.Println("Failed here ")
 		t.Fail()
@@ -48,15 +48,7 @@ func TestOverall(t *testing.T) {
 	expected := SignedMessageStructure{
 		Message:   message,
 		Signature: "kuoSwJ46gYKQzogQcG3Myje1TpHuo0WVKPqmlJ6Dy3pVm5Vwvz7sd/7Tl5h/145dmwV/OKemjxKvUezX6x8KKT3BUUTWuAfz6NsshPwYeJ5AC2mOAjUDeVKnURIYArXffSXi2+MBi+S5cgsql3eSPoLiFEv1z0uPuNUopuiKtzIIwrSwdzjsHsc8QGiaesXRIvLD+XAd18m7GWVGWFfp4eKxXmm+aZVS9UPNaBmhupZEHJm0ql4r9dMjdS6MJk4PTbxfu4qgIoQ3yxsOAS9y8yG/Zoob7r26xEMUXQTiC4eGT5o1OOLzVEgf1YMk7u0IneH3NQgMM5oxUYy5wMiDvZY=",
-		Pubkey:    `-----BEGIN PUBLIC KEY-----
-		MIIBCwKCAQIAsmg2jqguDen/Hp4/J1c/fgo0iMM3MzfFXKB9krcOSdOM3i2WvaYF
-		XXexECihP8yQrGkUCVIJBTrqaG5rVpjDzMFsCSC1QZzNOPTN00CshPlA/pSJTKHx
-		fCpHDiETu3bwnY4CuYUPO22kib0PI8PQztB0Q564PlpQTeFT5fhNw3ZWdrXP9siq
-		Ib2aDbfO2YHFqtkkzEJvIuR1zxdXNoGGghuEOoVwSlXDPew2U5csMMSq4boKrBmR
-		EXis+NO8N7pPiTLhUfcHniRPY6Rti5K9eWM5hSwbS5fVlF/5TZl/i+AOgNIFc5P+
-		e9X37dCTco9O2OmIpL5nwRYyop80iGeaSm8CAwEAAQ==
-		-----END PUBLIC KEY-----
-		`,
+		Pubkey:    "-----BEGIN PUBLIC KEY-----\nMIIBCwKCAQIAsmg2jqguDen/Hp4/J1c/fgo0iMM3MzfFXKB9krcOSdOM3i2WvaYF\nXXexECihP8yQrGkUCVIJBTrqaG5rVpjDzMFsCSC1QZzNOPTN00CshPlA/pSJTKHx\nfCpHDiETu3bwnY4CuYUPO22kib0PI8PQztB0Q564PlpQTeFT5fhNw3ZWdrXP9siq\nIb2aDbfO2YHFqtkkzEJvIuR1zxdXNoGGghuEOoVwSlXDPew2U5csMMSq4boKrBmR\nEXis+NO8N7pPiTLhUfcHniRPY6Rti5K9eWM5hSwbS5fVlF/5TZl/i+AOgNIFc5P+\ne9X37dCTco9O2OmIpL5nwRYyop80iGeaSm8CAwEAAQ==\n-----END PUBLIC KEY-----\n",
 	}
 	if expected != actual {
 		fmt.Println("Failed in comparison")
