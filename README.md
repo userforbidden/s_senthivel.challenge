@@ -24,16 +24,15 @@ Code Challenge Requirements
 ---------------------
   - [X] Given a string input of up to 250 characters, return a JSON response
     compliant to the schema defined below.
-    - You are responsible for generating a public/private RSA or ECDSA keypair
+    - [X] You are responsible for generating a public/private RSA or ECDSA keypair
       and persisting the keypair on the filesystem
-      - Subsequent invocations of your application should read from the same
-        files
-  - Document your code, at a minimum defining parameter types and return values
+      - [] Subsequent invocations of your application should read from the same files. Not working in Docker container - Need to check why 
+  - [X] Document your code, at a minimum defining parameter types and return values
     for any public methods
-  - Include Unit Test(s) with instructions on how a Continuous Integration
+  - [X] Include Unit Test(s) with instructions on how a Continuous Integration
     system can execute your test(s)
-  - You may only use first order libraries, you may not use any third party libraries or packages.  For example, you may use the OpenSSL library, but you may not use any libraries built on top of OpenSSL.
-  - This project will generate a new private key if it does not exist and will store
+  - [X] You may only use first order libraries, you may not use any third party libraries or packages.  For example, you may use the OpenSSL library, but you may not use any libraries built on top of OpenSSL.
+  - [X] This project will generate a new private key if it does not exist and will store - Using encoding and Crypto packages
 it in:
     $HOME/.local/share/signer
 
